@@ -64,7 +64,7 @@ public class SwiftImageGallerySaverPlugin: NSObject, FlutterPlugin {
                         let videoAsset = assetResult[0]
                         PHImageManager().requestAVAsset(forVideo: videoAsset, options: nil) { (avurlAsset, audioMix, info) in
                             if let urlStr = (avurlAsset as? AVURLAsset)?.url.absoluteString {
-                                self.saveResult(isSuccess: true, filePath: urlStr)
+                                self.saveResult(isSuccess: true, filePath: urlStr, localIdentifer: videoAsset.localIdentifier)
                             }
                         }
                     }
@@ -99,7 +99,7 @@ public class SwiftImageGallerySaverPlugin: NSObject, FlutterPlugin {
                             -> Bool in true }
                         imageAsset.requestContentEditingInput(with: options) { [unowned self] (contentEditingInput, info) in
                             if let urlStr = contentEditingInput?.fullSizeImageURL?.absoluteString {
-                                self.saveResult(isSuccess: true, filePath: urlStr)
+                                self.saveResult(isSuccess: true, filePath: urlStr, localIdentifier: imageAsset.localIdentifier)
                             }
                         }
                     }
