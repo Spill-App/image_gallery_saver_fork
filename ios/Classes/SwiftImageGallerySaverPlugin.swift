@@ -64,7 +64,7 @@ public class SwiftImageGallerySaverPlugin: NSObject, FlutterPlugin {
                         let videoAsset = assetResult[0]
                         PHImageManager().requestAVAsset(forVideo: videoAsset, options: nil) { (avurlAsset, audioMix, info) in
                             if let urlStr = (avurlAsset as? AVURLAsset)?.url.absoluteString {
-                                self.saveResult(isSuccess: true, filePath: urlStr, localIdentifer: videoAsset.localIdentifier)
+                                self.saveResult(isSuccess: true, filePath: urlStr, localIdentifier: videoAsset.localIdentifier)
                             }
                         }
                     }
@@ -182,6 +182,7 @@ public struct SaveResultModel: Encodable {
     var isSuccess: Bool!
     var filePath: String?
     var errorMessage: String?
+    var localIdentifier: String?
     
     func toDic() -> [String:Any]? {
         let encoder = JSONEncoder()
